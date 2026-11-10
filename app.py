@@ -1,5 +1,6 @@
 import gradio as gr
 from dotenv import load_dotenv
+import os
 from research_manager import ResearchManager
 from styles import CSS, JS, EXAMPLES, HEADER_HTML
 
@@ -35,4 +36,10 @@ with gr.Blocks(title="Deep Research") as ui:
 
 
 if __name__ == "__main__":
-    ui.launch(css=CSS, js=JS, theme=gr.themes.Base())
+    port = int(os.environ.get("PORT", 7860))
+    ui.launch(
+        css=CSS,
+        js=JS, 
+        theme=gr.themes.Base(),
+        server_name="0.0.0.0",
+        server_port=port)
